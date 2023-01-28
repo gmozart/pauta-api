@@ -6,7 +6,7 @@ import com.pautaapi.entity.Votacao;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.swing.text.html.Option;
+
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;

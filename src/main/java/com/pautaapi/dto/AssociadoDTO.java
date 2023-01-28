@@ -4,7 +4,6 @@ import com.pautaapi.entity.Associado;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.crypto.spec.OAEPParameterSpec;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
