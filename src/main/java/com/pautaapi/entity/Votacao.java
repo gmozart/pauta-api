@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -15,6 +16,7 @@ import javax.persistence.*;
 @Table(name="votacoes")
 public class Votacao {
 
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -22,7 +24,7 @@ public class Votacao {
     private Pauta pauta;
 
     @OneToMany
-    private Associado associado;
+    private List<Associado> associado;
 
     private Boolean voto;
 }
