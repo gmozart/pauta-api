@@ -1,9 +1,12 @@
 package com.pautaapi.controller;
 
+import com.pautaapi.dto.AssociadoDTO;
 import com.pautaapi.dto.PautaDTO;
 import com.pautaapi.dto.VotacaoDTO;
+import com.pautaapi.service.AssociadoService;
 import com.pautaapi.service.VotacaoService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,11 @@ public class VotacaoController {
 
     @PostMapping
     public ResponseEntity<VotacaoDTO> save(@RequestBody VotacaoDTO votacaoDTO){
+
+       AssociadoDTO associadoDTO = (AssociadoDTO) votacaoDTO.getAssociado();
+
+       if (associadoDTO.getCpf().equals(votacaoDTO.))
+
         votacaoService.save(votacaoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
