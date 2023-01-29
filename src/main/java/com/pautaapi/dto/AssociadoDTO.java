@@ -13,15 +13,11 @@ import java.util.stream.Collectors;
 public class AssociadoDTO {
 
     private Long id;
-
-    private String nome;
-
     private String cpf;
 
     public static AssociadoDTO of(Associado associado){
         return AssociadoDTO.builder()
                 .id(associado.getId())
-                .nome(associado.getNome())
                 .cpf(associado.getCpf())
                 .build();
     }
@@ -29,7 +25,6 @@ public class AssociadoDTO {
     public static Associado of(AssociadoDTO associadoDTO){
         return Associado.builder()
                 .id(associadoDTO.getId())
-                .nome(associadoDTO.getNome())
                 .cpf(associadoDTO.getCpf())
                 .build();
     }
@@ -41,6 +36,5 @@ public class AssociadoDTO {
     public static List<AssociadoDTO> of(List<Associado> associado){
         return associado.stream().map(AssociadoDTO::of).collect(Collectors.toList());
     }
-
 
 }

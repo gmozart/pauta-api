@@ -1,0 +1,10 @@
+server.port: 3306
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://u3r5w4ayhxzdrw87.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/jcsderzc86zlznyd
+    username: abagkj9kbfgnb2uc
+    password: x04e5uypxwvyylx4
+    jpa:
+      show-sql: true

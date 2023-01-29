@@ -22,11 +22,6 @@ public class VotacaoController {
 
     @PostMapping
     public ResponseEntity<VotacaoDTO> save(@RequestBody VotacaoDTO votacaoDTO){
-
-       AssociadoDTO associadoDTO = (AssociadoDTO) votacaoDTO.getAssociado();
-
-       if (associadoDTO.getCpf().equals(votacaoDTO.))
-
         votacaoService.save(votacaoDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
