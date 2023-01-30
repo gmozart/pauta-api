@@ -6,9 +6,12 @@ import com.pautaapi.repository.VotacaoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import javax.crypto.spec.OAEPParameterSpec;
+
 import java.util.List;
 import java.util.Optional;
+
+import static java.lang.Integer.parseInt;
+import static java.lang.Long.parseLong;
 
 @Service
 @RequiredArgsConstructor
@@ -35,4 +38,29 @@ public class VotacaoService {
     public void delete(Long id){
         votacaoRepository.deleteById(id);
     }
+
+    public Integer numberVotesInFavor(Long id){
+        return  votacaoRepository.numberVotesInFavor(id);
+    }
+    public Integer numberVotesAgainst(Long id){
+        return votacaoRepository.numberVotesAgainst(id);
+    }
+
+    public Integer numberofVotes(Long id){
+        return votacaoRepository.numberOfVotes(id);
+    }
+
+    public Optional<String> aprovalPauta(Long id){
+
+
+        Integer inFavor = votacaoRepository.numberVotesInFavor(id);
+        Integer aGainst = votacaoRepository.numberVotesAgainst(id);
+
+           if(inFavor > aGainst){
+               return Optional.of("Aprovado");
+               }else {
+               return Optional.of("Reprovado");
+           }
+        }
+
 }

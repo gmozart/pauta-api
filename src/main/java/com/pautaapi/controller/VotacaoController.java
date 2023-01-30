@@ -1,18 +1,13 @@
 package com.pautaapi.controller;
 
-import com.pautaapi.dto.AssociadoDTO;
-import com.pautaapi.dto.PautaDTO;
 import com.pautaapi.dto.VotacaoDTO;
-import com.pautaapi.service.AssociadoService;
 import com.pautaapi.service.VotacaoService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/votacoes")
@@ -45,6 +40,26 @@ public class VotacaoController {
     public ResponseEntity<VotacaoDTO> delete(@PathVariable Long id){
         votacaoService.delete(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/numbervotes/{id}")
+    public ResponseEntity<Integer> numberOfVotesPauta(@PathVariable Long id){
+        return ResponseEntity.ok(votacaoService.numberofVotes(id));
+    }
+
+    @GetMapping("/result/{id}")
+    public ResponseEntity<String> resultPauta(@PathVariable Long id){
+        return ResponseEntity.ok(votacaoService.aprovalPauta(id).orElseThrow());
+    }
+
+    @GetMapping("/votesinfavor/{id}")
+    public ResponseEntity<Integer> votesInFavor(@PathVariable Long id){
+        return  ResponseEntity.ok(votacaoService.numberVotesInFavor(id));
+    }
+
+    @GetMapping("/votesagainst/{id}")
+    public ResponseEntity<Integer> votesAgainst(@PathVariable Long id){
+        return ResponseEntity.ok(votacaoService.numberVotesAgainst(id));
     }
 
 }
