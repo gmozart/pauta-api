@@ -1,6 +1,8 @@
 package com.pautaapi.service;
 
 
+import com.pautaapi.consumer.CpfValidationClient;
+import com.pautaapi.consumer.response.CpfValidationResponse;
 import com.pautaapi.dto.VotacaoDTO;
 import com.pautaapi.repository.VotacaoRepository;
 import lombok.RequiredArgsConstructor;
@@ -10,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
+import static com.pautaapi.consumer.response.StatusCpfValidation.ABLE_TO_VOTE;
 import static java.lang.Integer.parseInt;
 import static java.lang.Long.parseLong;
 
@@ -18,9 +21,12 @@ import static java.lang.Long.parseLong;
 public class VotacaoService {
 
     private final VotacaoRepository votacaoRepository;
+    private final CpfValidationClient cpfValidationClient;
 
     public void save(VotacaoDTO votacaoDTO){
-        votacaoRepository.save(VotacaoDTO.of(votacaoDTO));
+        if(verificaCpf(votacaoDTO)) {
+            votacaoRepository.save(VotacaoDTO.of(votacaoDTO));
+        }
     }
 
     public Optional<VotacaoDTO> findId(Long id){
@@ -50,7 +56,7 @@ public class VotacaoService {
         return votacaoRepository.numberOfVotes(id);
     }
 
-    public Optional<String> aprovalPauta(Long id){
+    public Optional<String> aprovalPauta(Long id) {
 
 
         Integer inFavor = votacaoRepository.numberVotesInFavor(id);
@@ -61,6 +67,15 @@ public class VotacaoService {
                }else {
                return Optional.of("Reprovado");
            }
+    }
+
+    private boolean verificaCpf(VotacaoDTO votacaoDTO) {
+        CpfValidationResponse response = cpfValidationClient.validaCpf(votacaoDTO.getAssociado().getCpf());
+        if(Optional.ofNullable(response.getStatus()).isPresent()
+                && response.getStatus().equals(ABLE_TO_VOTE)) {
+            return false;
         }
+        return true;
+    }
 
 }

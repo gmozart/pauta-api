@@ -23,8 +23,8 @@ public class Votacao {
     @ManyToOne
     private Pauta pauta;
 
-    @OneToMany
-    private List<Associado> associado;
+    @OneToOne
+    private Associado associado;
 
     private Boolean voto;
 }

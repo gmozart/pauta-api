@@ -20,7 +20,7 @@ public class VotacaoDTO {
 
     private Pauta pauta;
 
-    private List<Associado> associado;
+    private Associado associado;
 
     private Boolean voto;
 
