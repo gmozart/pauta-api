@@ -58,7 +58,6 @@ public class VotacaoService {
 
     public Optional<String> aprovalPauta(Long id) {
 
-
         Integer inFavor = votacaoRepository.numberVotesInFavor(id);
         Integer aGainst = votacaoRepository.numberVotesAgainst(id);
 
