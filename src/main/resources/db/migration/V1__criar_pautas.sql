@@ -4,7 +4,9 @@ CREATE TABLE pautas (
       titulo VARCHAR(150) NOT NULL,
       descricao VARCHAR(250) NOT NULL,
       abertura DATETIME NOT NULL,
-      encerramento DATETIME NOT NULL
+      fechamento DATETIME NOT NULL,
+      sn_fechamento CHAR(1),
+      CHECK (sn_fechamento in ('S','N'))
 
 );
 

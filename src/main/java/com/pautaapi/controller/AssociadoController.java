@@ -23,8 +23,8 @@ public class AssociadoController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AssociadoDTO> findId(@PathVariable Long id){
-        return ResponseEntity.ok(associadoService.findId(id).orElseThrow());
+    public ResponseEntity<AssociadoDTO> findById(@PathVariable Long id){
+        return ResponseEntity.ok(associadoService.findById(id).orElseThrow());
     }
 
     @GetMapping

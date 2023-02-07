@@ -18,7 +18,7 @@ public class AssociadoService {
       associadoRepository.save(AssociadoDTO.of(associadoDTO));
     }
 
-    public Optional<AssociadoDTO> findId(Long id){
+    public Optional<AssociadoDTO> findById(Long id){
         return AssociadoDTO.of(associadoRepository.findById(id));
     }
 

@@ -23,6 +23,8 @@ public class PautaDTO {
 
     private LocalDateTime encerramento;
 
+    private String snFechamento = "N";
+
     public static PautaDTO of(Pauta pauta){
         return PautaDTO.builder()
                 .id(pauta.getId())
@@ -30,6 +32,7 @@ public class PautaDTO {
                 .descricao(pauta.getDescricao())
                 .abertura(pauta.getAbertura())
                 .encerramento(pauta.getEncerramento())
+                .snFechamento(pauta.getSnFechamento())
                 .build();
     }
 
@@ -40,6 +43,7 @@ public class PautaDTO {
                 .descricao(pautaDTO.getDescricao())
                 .abertura(pautaDTO.getAbertura())
                 .encerramento(pautaDTO.getEncerramento())
+                .snFechamento(pautaDTO.getSnFechamento())
                 .build();
     }
 
