@@ -1,6 +1,7 @@
 package com.pautaapi.controller;
 
 import com.pautaapi.dto.AssociadoDTO;
+import com.pautaapi.exception.ptNotFoundException;
 import com.pautaapi.service.AssociadoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -24,17 +25,17 @@ public class AssociadoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<AssociadoDTO> findById(@PathVariable Long id){
-        return ResponseEntity.ok(associadoService.findById(id).orElseThrow());
+        return ResponseEntity.ok(associadoService.findById(id).orElseThrow(ptNotFoundException::new));
     }
 
     @GetMapping
     public ResponseEntity<List<AssociadoDTO>> findAll(){
-        return ResponseEntity.ok(associadoService.findAll().orElseThrow());
+        return ResponseEntity.ok(associadoService.findAll().orElseThrow(ptNotFoundException::new));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<AssociadoDTO> update(@PathVariable Long id, @RequestBody AssociadoDTO associadoDTO){
-        return ResponseEntity.ok(associadoService.update(id,associadoDTO).orElseThrow());
+        return ResponseEntity.ok(associadoService.update(id,associadoDTO).orElseThrow(ptNotFoundException::new));
     }
 
     @DeleteMapping("/{id}")

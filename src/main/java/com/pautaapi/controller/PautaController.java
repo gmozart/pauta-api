@@ -2,6 +2,7 @@ package com.pautaapi.controller;
 
 import com.pautaapi.dto.PautaDTO;
 import com.pautaapi.entity.Pauta;
+import com.pautaapi.exception.ptNotFoundException;
 import com.pautaapi.service.PautaService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -26,17 +27,17 @@ public class PautaController {
 
     @GetMapping("/{id}")
     public ResponseEntity<PautaDTO> findId(@PathVariable Long id){
-        return ResponseEntity.ok(pautaService.findId(id).orElseThrow());
+        return ResponseEntity.ok(pautaService.findId(id).orElseThrow(ptNotFoundException::new));
     }
 
     @GetMapping
     public ResponseEntity<List<PautaDTO>> findAll(){
-        return ResponseEntity.ok(pautaService.findAll().orElseThrow());
+        return ResponseEntity.ok(pautaService.findAll().orElseThrow(ptNotFoundException::new));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<PautaDTO> update(@PathVariable Long id, @RequestBody PautaDTO pautaDTO){
-        return ResponseEntity.ok(pautaService.update(id, pautaDTO).orElseThrow());
+        return ResponseEntity.ok(pautaService.update(id, pautaDTO).orElseThrow(ptNotFoundException::new));
     }
 
     @DeleteMapping("/{id}")

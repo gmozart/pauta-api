@@ -1,6 +1,7 @@
 package com.pautaapi.controller;
 
 import com.pautaapi.dto.VotacaoDTO;
+import com.pautaapi.exception.ptNotFoundException;
 import com.pautaapi.service.VotacaoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -23,17 +24,17 @@ public class VotacaoController {
 
     @GetMapping("/{id}")
     public ResponseEntity<VotacaoDTO> findId(@PathVariable Long id){
-        return ResponseEntity.ok(votacaoService.findId(id).orElseThrow());
+        return ResponseEntity.ok(votacaoService.findId(id).orElseThrow(ptNotFoundException::new));
     }
 
     @GetMapping
     public ResponseEntity<List<VotacaoDTO>> findAll(){
-        return ResponseEntity.ok(votacaoService.findAll().orElseThrow());
+        return ResponseEntity.ok(votacaoService.findAll().orElseThrow(ptNotFoundException::new));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<VotacaoDTO> update(@PathVariable Long id, @RequestBody VotacaoDTO votacaoDTO){
-        return ResponseEntity.ok(votacaoService.update(id, votacaoDTO).orElseThrow());
+        return ResponseEntity.ok(votacaoService.update(id, votacaoDTO).orElseThrow(ptNotFoundException::new));
     }
 
     @DeleteMapping("/{id}")
@@ -49,7 +50,7 @@ public class VotacaoController {
 
     @GetMapping("/result/{id}")
     public ResponseEntity<String> resultPauta(@PathVariable Long id){
-        return ResponseEntity.ok(votacaoService.aprovalPauta(id).orElseThrow());
+        return ResponseEntity.ok(votacaoService.aprovalPauta(id).orElseThrow(ptNotFoundException::new));
     }
 
     @GetMapping("/votesinfavor/{id}")
