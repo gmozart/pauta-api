@@ -18,7 +18,7 @@ public class PautaService {
         pautaRepository.save(PautaDTO.of(pautaDTO));
     }
 
-    public Optional<PautaDTO> findId(Long id){
+    public Optional<PautaDTO> findById(Long id){
         return PautaDTO.of(pautaRepository.findById(id));
     }
 

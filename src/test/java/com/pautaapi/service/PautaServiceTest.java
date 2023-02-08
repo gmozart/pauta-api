@@ -1,9 +1,6 @@
 package com.pautaapi.service;
 
-
-
 import com.pautaapi.dto.PautaDTO;
-import com.pautaapi.entity.Associado;
 import com.pautaapi.entity.Pauta;
 import com.pautaapi.repository.PautaRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -18,10 +15,9 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -65,7 +61,12 @@ class PautaServiceTest {
 
 
     @Test
-    void findId() {
+    void whenFindIdTest() {
+        when(pautaRepository.findById(anyLong())).thenReturn(Optional.of(PautaDTO.of(pautaDTO)));
+        Optional<PautaDTO> response = pautaService.findById(ID);
+        assertNotNull(response);
+        assertEquals(Optional.class, response.getClass());
+        assertEquals(ID, response.get().getId());
     }
 
     @Test

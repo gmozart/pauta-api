@@ -26,8 +26,8 @@ public class PautaController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<PautaDTO> findId(@PathVariable Long id){
-        return ResponseEntity.ok(pautaService.findId(id).orElseThrow(ptNotFoundException::new));
+    public ResponseEntity<PautaDTO> findById(@PathVariable Long id){
+        return ResponseEntity.ok(pautaService.findById(id).orElseThrow(ptNotFoundException::new));
     }
 
     @GetMapping
