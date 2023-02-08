@@ -77,17 +77,29 @@ class AssociadoServiceTest {
     @Test
     void whenUpdateTest() {
 
+        associadoService.update(ID, associadoDTO);
+        verify(associadoRepository).save(captor.capture());
+        Associado captured = captor.getValue();
+        assertThat(captured.getId().equals(ID) && captured.getCpf().equals(CPF));
+        assertNotNull(captured);
+
+
     }
 
     @Test
-    void delete() {
+    void deleteWitchSucessTest() {
+        when(associadoRepository.findById(anyLong())).thenReturn(Optional.of(AssociadoDTO.of(associadoDTO)));
+        Optional<AssociadoDTO> response = associadoService.findById(ID);
+        assertNotNull(response);
+        doNothing().when(associadoRepository).deleteById(anyLong());
+        associadoService.delete(ID);
+        verify(associadoRepository, times(1)).deleteById(anyLong());
     }
+
 
     private void starterAssociado(){
         associado = new Associado(ID, CPF);
         associadoDTO = AssociadoDTO.of(new Associado(ID,CPF));
         optionalAssociado = Optional.of(AssociadoDTO.of(new Associado(ID,CPF)));
     }
-
-
 }
