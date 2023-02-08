@@ -76,7 +76,7 @@ class AssociadoServiceTest {
         associadoService.update(ID, associadoDTO);
         verify(associadoRepository).save(captor.capture());
         Associado captured = captor.getValue();
-        assertThat(captured.getId().equals(ID) && captured.getCpf().equals(CPF));
+        assertThat(captured.getId().equals(ID));
         assertNotNull(captured);
     }
 

@@ -1,5 +1,6 @@
 package com.pautaapi.service;
 
+import com.pautaapi.dto.AssociadoDTO;
 import com.pautaapi.dto.PautaDTO;
 import com.pautaapi.entity.Pauta;
 import com.pautaapi.repository.PautaRepository;
@@ -17,11 +18,12 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
+import static org.mockito.Mockito.times;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -82,10 +84,26 @@ class PautaServiceTest {
 
     @Test
     void whenUpdateTest() {
+        when(pautaRepository.save(any())).thenReturn(PautaDTO.of(pautaDTO));
+        Optional<PautaDTO> response = pautaService.update(ID, pautaDTO);
+        assertNotNull(response);
+        assertEquals(Optional.class, response.getClass());
+        assertEquals(ID, response.get().getId());
+        assertEquals(TITULO, response.get().getTitulo());
+        assertEquals(DESCRICAO ,response.get().getDescricao());
+        assertEquals(ABERTURA, response.get().getAbertura());
+        assertEquals(ENCERRAMENTO, response.get().getEncerramento());
+        assertEquals(SNFECHAMENTO, response.get().getSnFechamento());
     }
 
     @Test
-    void delete() {
+    void whenDeleteTest() {
+        when(pautaRepository.findById(anyLong())).thenReturn(Optional.of(PautaDTO.of(pautaDTO)));
+        Optional<PautaDTO> response = pautaService.findById(ID);
+        assertNotNull(response);
+        doNothing().when(pautaRepository).deleteById(anyLong());
+        pautaService.delete(ID);
+        verify(pautaRepository, times(1)).deleteById(anyLong());
     }
 
     private void starterPauta(){
