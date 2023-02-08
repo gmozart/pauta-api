@@ -15,7 +15,6 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.*;
 
@@ -47,13 +46,11 @@ class AssociadoServiceTest {
 
     @Test
     void whenSaveAssociadoTest() {
-
         associadoService.save(associadoDTO);
         verify(associadoRepository).save(captor.capture());
         Associado captured = captor.getValue();
         assertThat(captured.getId().equals(ID) && captured.getCpf().equals(CPF));
         assertNotNull(captured);
-
     }
 
     @Test
@@ -76,14 +73,11 @@ class AssociadoServiceTest {
 
     @Test
     void whenUpdateTest() {
-
         associadoService.update(ID, associadoDTO);
         verify(associadoRepository).save(captor.capture());
         Associado captured = captor.getValue();
         assertThat(captured.getId().equals(ID) && captured.getCpf().equals(CPF));
         assertNotNull(captured);
-
-
     }
 
     @Test
@@ -95,7 +89,6 @@ class AssociadoServiceTest {
         associadoService.delete(ID);
         verify(associadoRepository, times(1)).deleteById(anyLong());
     }
-
 
     private void starterAssociado(){
         associado = new Associado(ID, CPF);

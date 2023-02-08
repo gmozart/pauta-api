@@ -22,7 +22,6 @@ public class AssociadoService {
         return AssociadoDTO.of(associadoRepository.findById(id));
     }
 
-
     public Optional<List<AssociadoDTO>> findAll(){
         return Optional.of(AssociadoDTO.of(associadoRepository.findAll()));
     }
@@ -34,6 +33,4 @@ public class AssociadoService {
     public void delete(Long id){
         associadoRepository.deleteById(id);
     }
-
-
 }
