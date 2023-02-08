@@ -13,7 +13,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
@@ -73,11 +72,12 @@ class AssociadoServiceTest {
 
     @Test
     void whenUpdateTest() {
-        associadoService.update(ID, associadoDTO);
-        verify(associadoRepository).save(captor.capture());
-        Associado captured = captor.getValue();
-        assertThat(captured.getId().equals(ID));
-        assertNotNull(captured);
+        when(associadoRepository.save(any())).thenReturn(AssociadoDTO.of(associadoDTO));
+        Optional<AssociadoDTO> response = associadoService.update(ID, associadoDTO);
+        assertNotNull(response);
+        assertEquals(Optional.class, response.getClass());
+        assertEquals(ID, response.get().getId());
+        assertEquals(CPF, response.get().getCpf());
     }
 
     @Test

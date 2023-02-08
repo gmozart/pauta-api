@@ -1,6 +1,5 @@
 package com.pautaapi.service;
 
-import com.pautaapi.dto.AssociadoDTO;
 import com.pautaapi.dto.PautaDTO;
 import com.pautaapi.entity.Pauta;
 import com.pautaapi.repository.PautaRepository;
@@ -18,7 +17,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.anyLong;
