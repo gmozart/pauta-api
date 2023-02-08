@@ -13,6 +13,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.time.LocalDateTime;
+import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -70,11 +72,16 @@ class PautaServiceTest {
     }
 
     @Test
-    void findAll() {
+    void whenFindAll() {
+        when(pautaRepository.findAll()).thenReturn(Collections.singletonList(Pauta.builder().build()));
+        Optional<List<PautaDTO>> response = pautaService.findAll();
+        assertNotNull(response);
+        assertEquals(1,response.get().size());
+        assertEquals(PautaDTO.class, response.get().get(0).getClass());
     }
 
     @Test
-    void update() {
+    void whenUpdateTest() {
     }
 
     @Test
