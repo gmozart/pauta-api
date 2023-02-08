@@ -6,19 +6,18 @@ import com.pautaapi.repository.AssociadoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.InjectMocks;
-import org.mockito.Mock;
-import org.mockito.Mockito;
+import org.mockito.*;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Collections;
+import java.util.List;
 import java.util.Optional;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -37,19 +36,23 @@ class AssociadoServiceTest {
     private  AssociadoDTO associadoDTO;
     private Optional<AssociadoDTO> optionalAssociado;
 
+    @Captor
+    private ArgumentCaptor<Associado> captor;
+
     @BeforeEach
     void setUp(){
-
         starterAssociado();
-
     }
 
 
     @Test
     void whenSaveAssociadoTest() {
 
-        ArgumentCaptor Associado = ArgumentCaptor.forClass(AssociadoDTO.class);
-
+        associadoService.save(associadoDTO);
+        verify(associadoRepository).save(captor.capture());
+        Associado captured = captor.getValue();
+        assertThat(captured.getId().equals(ID) && captured.getCpf().equals(CPF));
+        assertNotNull(captured);
 
     }
 
@@ -65,7 +68,10 @@ class AssociadoServiceTest {
     @Test
     void whenFindAllTest() {
         when(associadoRepository.findAll()).thenReturn(Collections.singletonList(Associado.builder().build()));
-        assertNotNull(associadoService.findAll());
+        Optional<List<AssociadoDTO>> response = associadoService.findAll();
+        assertNotNull(response);
+        assertEquals(1,response.get().size());
+        assertEquals(AssociadoDTO.class, response.get().get(0).getClass());
     }
 
     @Test
