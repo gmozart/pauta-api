@@ -4,6 +4,7 @@ import com.pautaapi.dto.PautaDTO;
 import com.pautaapi.entity.Pauta;
 import com.pautaapi.exception.ptNotFoundException;
 import com.pautaapi.service.PautaService;
+import com.pautaapi.util.ResponseApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,12 +25,10 @@ public class PautaController {
         pautaService.save(pautaDTO);
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<PautaDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok(pautaService.findById(id).orElseThrow(ptNotFoundException::new));
     }
-
     @GetMapping
     public ResponseEntity<List<PautaDTO>> findAll(){
         return ResponseEntity.ok(pautaService.findAll().orElseThrow(ptNotFoundException::new));
@@ -45,4 +44,10 @@ public class PautaController {
         pautaService.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/result/{id}")
+    public ResponseEntity<ResponseApi> getPautaResult(@PathVariable Long id){
+        return ResponseEntity.ok(pautaService.getPautaResult(id));
+    }
+
 }

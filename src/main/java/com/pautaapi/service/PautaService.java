@@ -42,7 +42,6 @@ public class PautaService {
         Optional<Pauta> pauta = pautaRepository.findById(id);
         Integer votosAfavor = votacaoRepository.numberVotesInFavor(pauta.get().getId());
         Integer votosContra = votacaoRepository.numberVotesAgainst(pauta.get().getId());
-
         if (LocalDateTime.now().isAfter(pauta.get().getFechamento())) {
             if (votosAfavor > votosContra) {
                 pauta.get().setSnAprovada("S");
