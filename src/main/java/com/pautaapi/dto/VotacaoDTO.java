@@ -17,18 +17,15 @@ import java.util.stream.Collectors;
 public class VotacaoDTO {
 
     private Long id;
-
-    private Pauta pauta;
-
-    private Associado associado;
-
+    private Long pautaId;
+    private Long associadoId;
     private Boolean voto;
 
     public static VotacaoDTO of(Votacao votacao){
         return VotacaoDTO.builder()
                 .id(votacao.getId())
-                .pauta(votacao.getPauta())
-                .associado(votacao.getAssociado())
+                .pautaId(votacao.getPauta().getId())
+                .associadoId(votacao.getAssociado().getId())
                 .voto(votacao.getVoto())
                 .build();
     }
@@ -36,8 +33,6 @@ public class VotacaoDTO {
     public static Votacao of(VotacaoDTO votacaoDTO){
         return Votacao.builder()
                 .id(votacaoDTO.getId())
-                .pauta(votacaoDTO.getPauta())
-                .associado(votacaoDTO.getAssociado())
                 .voto(votacaoDTO.getVoto())
                 .build();
     }

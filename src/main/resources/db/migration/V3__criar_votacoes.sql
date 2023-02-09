@@ -1,5 +1,5 @@
 CREATE TABLE votacoes (
-      id  INT PRIMARY KEY NOT NULL,
+      id INT PRIMARY KEY NOT NULL,
       pauta_id INT NOT NULL,
       associado_id INT NOT NULL,
       voto BOOLEAN NOT NULL,

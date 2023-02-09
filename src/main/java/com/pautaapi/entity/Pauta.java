@@ -19,7 +19,6 @@ import java.time.LocalDateTime;
 public class Pauta {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String titulo;
@@ -28,11 +27,7 @@ public class Pauta {
 
     private LocalDateTime abertura;
 
-    @JsonIgnore
-    private LocalDateTime encerramento;
+    private LocalDateTime fechamento;
 
-    @JsonIgnore
-    private String snFechamento;
-
-
+    private String snAprovada;
 }

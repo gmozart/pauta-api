@@ -11,5 +11,4 @@ public class PautaApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(PautaApiApplication.class, args);
 	}
-
 }
