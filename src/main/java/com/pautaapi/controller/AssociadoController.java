@@ -22,6 +22,7 @@ public class AssociadoController {
     @PostMapping
     public ResponseEntity<AssociadoDTO> save(@RequestBody AssociadoDTO associadoDTO){
         associadoService.save(associadoDTO);
+        log.info("Criando um novo associado");
         return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
@@ -33,11 +34,13 @@ public class AssociadoController {
 
     @GetMapping
     public ResponseEntity<List<AssociadoDTO>> findAll(){
+        log.info("Retornando uma lista de associados.");
         return ResponseEntity.ok(associadoService.findAll().orElseThrow(ptNotFoundException::new));
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<AssociadoDTO> update(@PathVariable Long id, @RequestBody AssociadoDTO associadoDTO){
+        log.info("Atualizando dados de um associado");
         return ResponseEntity.ok(associadoService.update(id,associadoDTO).orElseThrow(ptNotFoundException::new));
     }
 

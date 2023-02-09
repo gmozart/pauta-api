@@ -38,6 +38,7 @@ public class PautaService {
     }
 
     public void delete(Long id) {pautaRepository.deleteById(id);}
+
     public ResponseApi getPautaResult(Long id) {
         Optional<Pauta> pauta = pautaRepository.findById(id);
         Integer votosAfavor = votacaoRepository.numberVotesInFavor(pauta.get().getId());
