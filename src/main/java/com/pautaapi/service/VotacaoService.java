@@ -39,7 +39,7 @@ public class VotacaoService {
         if(LocalDateTime.now().isAfter(pauta.getFechamento())){
             return ResponseApi.builder().body("A pauta esta expirada!").build();
         }
-        Votacao votacao = Votacao.builder().id(votacaoDTO.getId()).pauta(pauta).associado(associado).voto(votacaoDTO.getVoto()).build();
+        Votacao votacao = Votacao.builder().id(votacaoDTO.getId()).pauta(pauta).associado(associado).snVoto(votacaoDTO.getSnVoto()).build();
         votacaoRepository.save(votacao);
         return ResponseApi.builder().body("Voto computado com sucesso!").build();
     }

@@ -19,21 +19,21 @@ public class VotacaoDTO {
     private Long id;
     private Long pautaId;
     private Long associadoId;
-    private Boolean voto;
+    private String snVoto;
 
     public static VotacaoDTO of(Votacao votacao){
         return VotacaoDTO.builder()
                 .id(votacao.getId())
                 .pautaId(votacao.getPauta().getId())
                 .associadoId(votacao.getAssociado().getId())
-                .voto(votacao.getVoto())
+                .snVoto(votacao.getSnVoto())
                 .build();
     }
 
     public static Votacao of(VotacaoDTO votacaoDTO){
         return Votacao.builder()
                 .id(votacaoDTO.getId())
-                .voto(votacaoDTO.getVoto())
+                .snVoto(votacaoDTO.getSnVoto())
                 .build();
     }
 

@@ -25,5 +25,5 @@ public class Votacao {
     @OneToOne
     private Associado associado;
 
-    private Boolean voto;
+    private String snVoto;
 }

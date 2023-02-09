@@ -54,5 +54,4 @@ public class PautaService {
             return ResponseApi.builder().body("A pauta esta em andamento!").build();
         }
     }
-
 }
