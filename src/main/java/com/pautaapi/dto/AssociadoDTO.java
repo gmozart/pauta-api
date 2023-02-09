@@ -4,6 +4,7 @@ import com.pautaapi.entity.Associado;
 import lombok.Builder;
 import lombok.Data;
 
+import javax.validation.constraints.Pattern;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -13,6 +14,7 @@ import java.util.stream.Collectors;
 public class AssociadoDTO {
 
     private Long id;
+    @Pattern(regexp = "(^\\d{3}\\x2E\\d{3}\\x2E\\d{3}\\x2D\\d{2}$)")
     private String cpf;
 
     public static AssociadoDTO of(Associado associado){
