@@ -50,12 +50,6 @@ public class VotacaoService {
         return Optional.of(VotacaoDTO.of(votacaoRepository.findAll()));
     }
 
-    public Optional<VotacaoDTO> update(Long id, VotacaoDTO votacaoDTO) {
-        return Optional.of(VotacaoDTO.of(votacaoRepository.save(VotacaoDTO.of(votacaoDTO))));
-    }
-    public void delete(Long id) {
-        votacaoRepository.deleteById(id);
-    }
     public Integer numberVotesInFavor(Long id) {
         return votacaoRepository.numberVotesInFavor(id);
     }

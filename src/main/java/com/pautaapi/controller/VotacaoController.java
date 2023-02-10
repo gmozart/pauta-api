@@ -33,18 +33,7 @@ public class VotacaoController {
     public ResponseEntity<List<VotacaoDTO>> findAll(){
         return ResponseEntity.ok(votacaoService.findAll().orElseThrow(ptNotFoundException::new));
     }
-
-    @PutMapping("/{id}")
-    public ResponseEntity<VotacaoDTO> update(@PathVariable Long id, @RequestBody VotacaoDTO votacaoDTO){
-        return ResponseEntity.ok(votacaoService.update(id, votacaoDTO).orElseThrow(ptNotFoundException::new));
-    }
-
-    @DeleteMapping("/{id}")
-    public ResponseEntity<VotacaoDTO> delete(@PathVariable Long id){
-        votacaoService.delete(id);
-        return ResponseEntity.noContent().build();
-    }
-
+    
     @GetMapping("/numbervotes/{id}")
     public ResponseEntity<Integer> numberOfVotesPauta(@PathVariable Long id){
         return ResponseEntity.ok(votacaoService.numberofVotes(id));
