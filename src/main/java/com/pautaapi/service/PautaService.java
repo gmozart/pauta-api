@@ -24,22 +24,27 @@ public class PautaService {
 
     public void save(PautaDTO pautaDTO) {
         pautaDTO.setAbertura(LocalDateTime.now());
+        log.info("Criando um nova Pauta");
         pautaRepository.save(PautaDTO.of(pautaDTO));
     }
 
     public Optional<PautaDTO> findById(Long id) {
+        log.info("Buscando pauta por id");
         return PautaDTO.of(pautaRepository.findById(id));
     }
 
     public Optional<List<PautaDTO>> findAll() {
+        log.info("Retorna uma lista de pautas");
         return Optional.of(PautaDTO.of(pautaRepository.findAll()));
     }
 
     public Optional<PautaDTO> update(Long id, PautaDTO pautaDTO) {
-        return Optional.of(PautaDTO.of(pautaRepository.save(PautaDTO.of(pautaDTO))));
-    }
+        log.info("Atualiza os dados da pauta");
+        return Optional.of(PautaDTO.of(pautaRepository.save(PautaDTO.of(pautaDTO))));}
 
-    public void delete(Long id) {pautaRepository.deleteById(id);}
+    public void delete(Long id) {
+        log.info("Deleta a pauta");
+        pautaRepository.deleteById(id);}
 
     public ResponseApi getPautaResult(Long id) {
         Optional<Pauta> pauta = pautaRepository.findById(id);
