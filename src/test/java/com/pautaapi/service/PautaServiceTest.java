@@ -40,12 +40,12 @@ class PautaServiceTest {
     @Captor
     private ArgumentCaptor<Pauta> captor;
 
-    private static final Long ID = 1l;
+    private static final Long ID = 1L;
     private static final String TITULO = "Pauta para o aumento do salário";
     private static final String DESCRICAO = "O salário dos funcionários deve ter um aumento de 5%?";
     private static final LocalDateTime ABERTURA = LocalDateTime.now();
-    private static final LocalDateTime ENCERRAMENTO = LocalDateTime.now();
-    private static final String SNFECHAMENTO = "N";
+    private static final LocalDateTime FECHAMENTO = LocalDateTime.now();
+    private static final String SNAPROVADA = "N";
 
 
     @BeforeEach
@@ -90,8 +90,7 @@ class PautaServiceTest {
         assertEquals(TITULO, response.get().getTitulo());
         assertEquals(DESCRICAO ,response.get().getDescricao());
         assertEquals(ABERTURA, response.get().getAbertura());
-        assertEquals(ENCERRAMENTO, response.get().getEncerramento());
-        assertEquals(SNFECHAMENTO, response.get().getSnFechamento());
+        assertEquals(FECHAMENTO, response.get().getFechamento());
     }
 
     @Test
@@ -104,10 +103,17 @@ class PautaServiceTest {
         verify(pautaRepository, times(1)).deleteById(anyLong());
     }
 
-    private void starterPauta(){
-        pauta = new Pauta(ID, TITULO, DESCRICAO,ABERTURA,ENCERRAMENTO,SNFECHAMENTO);
-        pautaDTO = PautaDTO.of(new Pauta(ID, TITULO, DESCRICAO,ABERTURA,ENCERRAMENTO,SNFECHAMENTO));
-        optionalPauta= Optional.of(PautaDTO.of(new Pauta(ID, TITULO, DESCRICAO,ABERTURA,ENCERRAMENTO,SNFECHAMENTO)));
+    @Test
+    void getPautaResult() {
+
+
     }
+
+    private void starterPauta(){
+        pauta = new Pauta(ID, TITULO, DESCRICAO,ABERTURA,FECHAMENTO,SNAPROVADA);
+        pautaDTO = PautaDTO.of(new Pauta(ID, TITULO, DESCRICAO,ABERTURA,FECHAMENTO,SNAPROVADA));
+        optionalPauta= Optional.of(PautaDTO.of(new Pauta(ID, TITULO, DESCRICAO,ABERTURA,FECHAMENTO,SNAPROVADA)));
+    }
+
 
 }

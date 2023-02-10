@@ -31,9 +31,7 @@ class AssociadoServiceTest {
     @Mock
     private AssociadoRepository associadoRepository;
 
-    private Associado associado;
     private  AssociadoDTO associadoDTO;
-    private Optional<AssociadoDTO> optionalAssociado;
 
     @Captor
     private ArgumentCaptor<Associado> captor;
@@ -42,7 +40,6 @@ class AssociadoServiceTest {
     void setUp(){
         starterAssociado();
     }
-
 
     @Test
     void whenSaveAssociadoTest() {
@@ -91,8 +88,6 @@ class AssociadoServiceTest {
     }
 
     private void starterAssociado(){
-        associado = new Associado(ID, CPF);
         associadoDTO = AssociadoDTO.of(new Associado(ID,CPF));
-        optionalAssociado = Optional.of(AssociadoDTO.of(new Associado(ID,CPF)));
     }
 }

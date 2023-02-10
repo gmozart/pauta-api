@@ -1,9 +1,5 @@
 package com.pautaapi.service;
 
-
-import com.pautaapi.consumer.CpfValidationClient;
-import com.pautaapi.consumer.response.CpfValidationResponse;
-import com.pautaapi.dto.PautaDTO;
 import com.pautaapi.dto.VotacaoDTO;
 import com.pautaapi.entity.Associado;
 import com.pautaapi.entity.Pauta;
@@ -15,12 +11,9 @@ import com.pautaapi.util.ResponseApi;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
-
-import static com.pautaapi.consumer.response.StatusCpfValidation.ABLE_TO_VOTE;
 
 
 @Service
