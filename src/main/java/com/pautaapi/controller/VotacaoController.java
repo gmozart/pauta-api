@@ -5,7 +5,6 @@ import com.pautaapi.exception.ptNotFoundException;
 import com.pautaapi.service.VotacaoService;
 import com.pautaapi.util.ResponseApi;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,7 +32,7 @@ public class VotacaoController {
     public ResponseEntity<List<VotacaoDTO>> findAll(){
         return ResponseEntity.ok(votacaoService.findAll().orElseThrow(ptNotFoundException::new));
     }
-    
+
     @GetMapping("/numbervotes/{id}")
     public ResponseEntity<Integer> numberOfVotesPauta(@PathVariable Long id){
         return ResponseEntity.ok(votacaoService.numberofVotes(id));

@@ -6,6 +6,7 @@ import com.pautaapi.repository.PautaRepository;
 import com.pautaapi.repository.VotacaoRepository;
 import com.pautaapi.util.ResponseApi;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 @RequiredArgsConstructor
 public class PautaService {
 
