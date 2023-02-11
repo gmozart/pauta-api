@@ -32,7 +32,6 @@ class PautaServiceTest {
 
     @Mock
     private PautaRepository pautaRepository;
-
     private Pauta pauta;
     private PautaDTO pautaDTO;
     private Optional<PautaDTO> optionalPauta;
